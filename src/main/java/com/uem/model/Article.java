@@ -9,6 +9,9 @@ public class Article {
     private double discount; // en porcentaje: 10 = 10%
 
     private final Calculator calculator = new Calculator();
+    
+    public Article() {
+}
 
     public Article(String name, int quantity, double price, double discount) {
         this.name = name;
