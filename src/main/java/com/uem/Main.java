@@ -16,9 +16,12 @@ public class Main {
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
-        List<Order> orders = loadOrders();
-        log.debug("Total orders loaded: {}", orders.size());
+    List<Order> orders = loadOrders();
+    log.debug("Total orders loaded: {}", orders.size());
+    for (Order order : orders) {
+        log.debug("Loaded order: {}", order.getId());
     }
+}
 
     private static List<Order> loadOrders() {
         ObjectMapper mapper = new ObjectMapper();
