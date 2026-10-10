@@ -2,9 +2,12 @@ package com.uem.model;
 
 import com.uem.Calculator;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Article {
     private String name;
     private int quantity;
+    @JsonProperty("unitPrice")
     private double price;
     private double discount; // en porcentaje: 10 = 10%
 
