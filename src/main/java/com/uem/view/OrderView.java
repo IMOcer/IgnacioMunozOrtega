@@ -1,7 +1,7 @@
-package com.example.uem.view;
+package com.uem.view;
 
 import javax.swing.*;
-import com.example.uem.model.Order;
+import com.uem.model.Order;
 import java.awt.*;
 
 public class OrderView extends JFrame {

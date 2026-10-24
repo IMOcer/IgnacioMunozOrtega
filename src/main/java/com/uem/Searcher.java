@@ -2,6 +2,7 @@ package com.uem;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.uem.model.Order;
 
 public class Searcher {
 
@@ -14,6 +15,8 @@ public class Searcher {
         }
         return false;
     }
+
+   
 
     // Simple contains check
     public boolean searchWord(String word, List<String> list) {
@@ -49,4 +52,14 @@ public class Searcher {
         }
         return results;
     }
+
+    // Busca un pedido por su id; devuelve null si no existe
+public Order findOrderById(String id, List<Order> orders) {
+    for (Order order : orders) {
+        if (order.getId().equals(id)) {
+            return order;
+        }
+    }
+    return null;
+}
 }

@@ -1,4 +1,4 @@
-package com.example.uem.controller;
+package com.uem.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,10 +8,10 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.uem.Main;
-import com.example.uem.model.Order;
-import com.example.uem.model.Searcher;
-import com.example.uem.view.OrderView;
+import com.uem.Main;
+import com.uem.model.Order;
+import com.uem.Searcher;
+import com.uem.view.OrderView;
 
 public class OrderController {
 
