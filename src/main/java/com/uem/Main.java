@@ -4,24 +4,34 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.fasterxml.jackson.core.type.TypeReference;
+iniciimport com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.uem.controller.OrderController;
 import com.uem.model.Order;
+import com.uem.view.OrderView;
 
 public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
+    public static final double RATE = 1.0;
 
     public static void main(String[] args) {
-    List<Order> orders = loadOrders();
-    log.debug("Total orders loaded: {}", orders.size());
-    for (Order order : orders) {
-        log.debug("Loaded order: {}", order.getId());
+        List<Order> orders = loadOrders();
+        log.debug("Total orders loaded: {}", orders.size());
+        for (Order order : orders) {
+            log.debug("Loaded order: {}", order.getId());
+        }
+
+        // Initialize MVC
+        SwingUtilities.invokeLater(() -> {
+            OrderView view = new OrderView();
+            new OrderController(view, orders);
+        });
     }
-}
 
     private static List<Order> loadOrders() {
         ObjectMapper mapper = new ObjectMapper();
