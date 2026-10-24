@@ -1,7 +1,8 @@
-package com.uem.view;
+package com.uem.view;                     
 
 import javax.swing.*;
-import com.uem.model.Order;
+import com.uem.model.Article;             
+import com.uem.model.Order;                
 import java.awt.*;
 
 public class OrderView extends JFrame {
@@ -15,26 +16,41 @@ public class OrderView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
-        //add new JLabel("Order ID:");
-        //add to view the search field
-        // add to view the search button
-        // add to view the result area inside a JScrollPane
+        // ↓ sustituye los 4 comentarios "add ..." por esto
+        add(new JLabel("Order ID:"));
+        add(searchField);
+        add(searchButton);
+        resultArea.setEditable(false);
+        add(new JScrollPane(resultArea));
+        // ↑
 
-        pack();
+        pack();                            
         setVisible(true);
     }
 
     public String getSearchId() {
-        //...
-        return "";
+        return searchField.getText().trim(); 
     }
 
     public JButton getSearchButton() {
-        //...
-        return null;
+        return searchButton;                  
     }
 
     public void displayOrder(Order order, double rate) {
-        //Display order details in resultArea
+       
+        StringBuilder sb = new StringBuilder();
+        sb.append("Order ID: ").append(order.getId()).append("\n\n");
+        for (Article a : order.getArticles()) {
+            sb.append(String.format("%s  x%d  %.2f €  (-%.0f%%)%n",
+                    a.getName(), a.getQuantity(), a.getPrice() * rate, a.getDiscount()));
+        }
+        sb.append(String.format("%nGross total: %.2f €%n", order.getGrossTotal() * rate));
+        sb.append(String.format("Discounted total: %.2f €", order.getDiscountedTotal() * rate));
+        resultArea.setText(sb.toString());
+    }
+
+   
+    public void displayMessage(String message) {
+        resultArea.setText(message);
     }
 }
