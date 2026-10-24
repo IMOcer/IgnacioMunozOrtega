@@ -10,8 +10,6 @@ public class Searcher {
         for (String item : list) {
             if (item.equals(phrase)) {
                 return true;
-            } else {
-                return false;
             }
         }
         return false;
