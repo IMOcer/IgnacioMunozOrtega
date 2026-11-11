@@ -43,17 +43,26 @@ public class OrderView extends JFrame {
         return searchButton;                  
     }
 
-    public void displayOrder(Order order, double rate) {
-       
-        StringBuilder sb = new StringBuilder();
-        sb.append("Order ID: ").append(order.getId()).append("\n\n");
-        for (Article a : order.getArticles()) {
-            sb.append(String.format("%s  x%d  %.2f €  (-%.0f%%)%n",
-                    a.getName(), a.getQuantity(), a.getPrice() * rate, a.getDiscount()));
-        }
-        sb.append(String.format("%nGross total: %.2f €%n", order.getGrossTotal() * rate));
-        sb.append(String.format("Discounted total: %.2f €", order.getDiscountedTotal() * rate));
-        resultArea.setText(sb.toString());
+   public void displayOrder(Order order, Double rate) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Order ID: ").append(order.getId()).append("\n\n");
+    for (Article a : order.getArticles()) {
+        sb.append(String.format("%s  x%d  %.2f €  (-%.0f%%)%n",
+                a.getName(), a.getQuantity(), a.getPrice(), a.getDiscount()));
+    }
+
+    sb.append(String.format("%nGross total: %.2f €", order.getGrossTotal()));
+    sb.append(String.format("%nDiscounted total: %.2f €", order.getDiscountedTotal()));
+
+    if (rate != null) {
+        sb.append(String.format("%n%nGross total: %.2f $", order.getGrossTotal() * rate));
+        sb.append(String.format("%nDiscounted total: %.2f $", order.getDiscountedTotal() * rate));
+        sb.append(String.format("%n(1 € = %.4f $)", rate));
+    } else {
+        sb.append("\n\nUSD: tipo de cambio no disponible");
+    }
+
+    resultArea.setText(sb.toString());
     }
 
    

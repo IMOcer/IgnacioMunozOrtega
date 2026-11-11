@@ -17,7 +17,7 @@ import com.uem.view.OrderView;
 public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
-    public static final double RATE = 1.0;
+    
 
     public static void main(String[] args) {
         List<Order> orders = loadOrders();
